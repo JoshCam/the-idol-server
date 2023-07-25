@@ -1,18 +1,27 @@
-import { Controller, Delete, Get, Param, Patch } from '@nestjs/common';
+import {
+  Controller,
+  Delete,
+  Get,
+  Param,
+  ParseIntPipe,
+  Patch,
+} from '@nestjs/common';
 import { ITeam } from 'src/interfaces/team.interface';
+import { TeamsService } from './teams.service';
 
 @Controller('teams')
 export class TeamsController {
+  constructor(private readonly teamsService: TeamsService) {}
+
   @Get()
-  getAllTeams(): ITeam[] {
-    // Get all Teams from the database
-    return [{ name: 'uno', members: [{ name: 'steve', teamName: 'uno' }] }];
+  async getAllTeams(): Promise<ITeam[]> {
+    return await this.teamsService.getAllTeams();
   }
 
   @Get(':id')
-  getTeam(@Param('id') id: string): ITeam {
+  async getTeam(@Param('id', ParseIntPipe) id: number): Promise<ITeam> {
     // Get specific Team
-    return { name: 'uno', members: [{ name: 'steve', teamName: 'uno' }] };
+    return await this.teamsService.getTeam(id);
   }
 
   @Patch(':id')

@@ -1,0 +1,21 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model members {
+  id      Int    @id @default(autoincrement())
+  name    String @db.VarChar(45)
+  team    teams   @relation(fields: [team_id], references: [id])
+  team_id Int
+}
+
+model teams {
+  id     Int      @id @default(autoincrement())
+  name   String   @db.VarChar(45)
+  members members[]
+}
