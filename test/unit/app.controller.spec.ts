@@ -1,22 +1,31 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { AppController } from '../../src/app.controller';
-import { AppService } from '../../src/app.service';
+import { TeamService } from '../../src/team/team.service';
+import { MembersService } from '../../src/members/members.service';
+import { TeamController } from '../../src/team/team.controller';
+import { MembersController } from '../../src/members/members.controller';
 
 describe('AppController', () => {
-  let appController: AppController;
+  let teamController: TeamController;
+  let teamService: TeamService;
+  let memberController: MembersController;
+  let memberService: MembersService;
 
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
-      controllers: [AppController],
-      providers: [AppService],
+      controllers: [TeamController, MembersController],
+      providers: [TeamService, MembersService],
     }).compile();
 
-    appController = app.get<AppController>(AppController);
+    teamController = app.get<TeamController>(TeamController);
+    teamService = app.get<TeamService>(TeamService);
+    memberController = app.get<MembersController>(MembersController);
+    memberService = app.get<MembersService>(MembersService);
   });
 
-  describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
-    });
+  it('should build expected dependencies', () => {
+    expect(teamController).toBeDefined();
+    expect(teamService).toBeDefined();
+    expect(memberController).toBeDefined();
+    expect(memberService).toBeDefined();
   });
 });
