@@ -1,8 +1,8 @@
 import { Controller, Delete, Get, Param, Patch } from '@nestjs/common';
 import { ITeam } from 'src/interfaces/team.interface';
 
-@Controller('team')
-export class TeamController {
+@Controller('teams')
+export class TeamsController {
   @Get()
   getAllTeams(): ITeam[] {
     // Get all Teams from the database

@@ -1,23 +1,23 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { TeamService } from '../../src/team/team.service';
+import { TeamsService } from '../../src/teams/teams.service';
 import { MembersService } from '../../src/members/members.service';
-import { TeamController } from '../../src/team/team.controller';
+import { TeamsController } from '../../src/teams/teams.controller';
 import { MembersController } from '../../src/members/members.controller';
 
 describe('AppController', () => {
-  let teamController: TeamController;
-  let teamService: TeamService;
+  let teamController: TeamsController;
+  let teamService: TeamsService;
   let memberController: MembersController;
   let memberService: MembersService;
 
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
-      controllers: [TeamController, MembersController],
-      providers: [TeamService, MembersService],
+      controllers: [TeamsController, MembersController],
+      providers: [TeamsService, MembersService],
     }).compile();
 
-    teamController = app.get<TeamController>(TeamController);
-    teamService = app.get<TeamService>(TeamService);
+    teamController = app.get<TeamsController>(TeamsController);
+    teamService = app.get<TeamsService>(TeamsService);
     memberController = app.get<MembersController>(MembersController);
     memberService = app.get<MembersService>(MembersService);
   });
