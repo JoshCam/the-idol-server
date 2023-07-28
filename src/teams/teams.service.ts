@@ -39,23 +39,10 @@ export class TeamsService {
     });
   }
 
-  // formatTeamAndMembers(teams: ITeam[], members: IMember[]): ITeamsAndMembers {
-  //   return { teams, members };
-  // }
-
-  // async getTeam(id: number) {
-  //   // check id is number
-  //   return this.prisma.teams.findUnique({
-  //     where: {
-  //       teamId,
-  //     },
-  //     include: {
-  //       members: {
-  //         select: {
-  //           memberName: true,
-  //         },
-  //       },
-  //     },
-  //   });
-  // }
+  async editTeam(teamName: string, teamId: number): Promise<ITeam> {
+    return await this.prisma.teams.update({
+      where: { teamId },
+      data: { teamName },
+    });
+  }
 }
