@@ -19,9 +19,9 @@ export class TeamsController {
   }
 
   @Get(':id')
-  async getTeam(@Param('id', ParseIntPipe) id: number): Promise<ITeam> {
+  async getTeam(@Param('id', ParseIntPipe) id: number): Promise<any> {
     // Get specific Team
-    return await this.teamsService.getTeam(id);
+    // return await this.teamsService.getTeam(id);
   }
 
   @Patch(':id')

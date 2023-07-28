@@ -1,3 +1,5 @@
 export interface IMember {
-  name: string;
+  memberName: string;
+  memberId: number;
+  teamId: number;
 }

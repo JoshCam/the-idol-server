@@ -1,6 +1,4 @@
-import { IMember } from './member.interface';
-
 export interface ITeam {
-  name: string;
-  members: IMember[];
+  teamName: string;
+  teamId: number;
 }

@@ -8,14 +8,14 @@ datasource db {
 }
 
 model members {
-  id      Int    @id @default(autoincrement())
-  name    String @db.VarChar(45)
-  team    teams   @relation(fields: [team_id], references: [id])
-  team_id Int
+  memberId    Int    @id @map("id") @default(autoincrement())
+  memberName  String @map("name") @db.VarChar(45)
+  teamName    teams  @relation(fields: [teamId], references: [teamId])
+  teamId      Int    @map("team_id")
 }
 
 model teams {
-  id     Int      @id @default(autoincrement())
-  name   String   @db.VarChar(45)
-  members members[]
+  teamId     Int      @id @map("id") @default(autoincrement())
+  teamName   String   @map("name") @db.VarChar(45)
+  members    members[]
 }
