@@ -1,20 +1,26 @@
-import { Controller, Delete, Get, Param, Patch } from '@nestjs/common';
-// import { any } from 'src/interfaces/member.interface';
-import { PrismaService } from 'src/prisma.service';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
+import { instanceToPlain } from 'class-transformer';
+import { CreateMemberDto } from 'src/dtos/createMember.dto';
+import { IMember } from 'src/interfaces/member.interface';
+import { MembersService } from './members.service';
+// import { IMember } from 'src/interfaces/member.interface';
 
 @Controller('/members')
 export class MembersController {
-  constructor(private prisma: PrismaService) {}
+  constructor(private readonly membersService: MembersService) {}
 
-  @Get()
-  async getAllMembers(): Promise<any> {
-    //
-  }
-
-  @Get('/team/:id')
-  getAllTeamMembers(@Param('id') id: string): any[] {
-    // Get all members from the database for a specified team
-    return [{ name: 'steve' }];
+  @Post()
+  async addMember(@Body() createMemberDto: CreateMemberDto): Promise<IMember> {
+    const { memberName, teamId } = instanceToPlain(createMemberDto);
+    return await this.membersService.addMember(memberName, teamId);
   }
 
   @Get(':id')

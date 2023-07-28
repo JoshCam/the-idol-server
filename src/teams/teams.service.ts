@@ -1,4 +1,6 @@
 import { Injectable } from '@nestjs/common';
+import { CreateTeamDto } from 'src/dtos/createTeam.dto';
+import { ITeam } from 'src/interfaces/team.interface';
 // import { IMember } from 'src/interfaces/member.interface';
 // import { ITeam } from 'src/interfaces/team.interface';
 import { ITeamsAndMembers } from 'src/interfaces/teamAndMembers.interface';
@@ -16,7 +18,7 @@ export class TeamsService {
    * Method to get all teams and their members
    * @returns an array of teams with any members included
    */
-  async getAllTeams(): Promise<ITeamsAndMembers> {
+  async getAllTeamsAndMembers(): Promise<ITeamsAndMembers> {
     const teams = await this.prisma.teams.findMany({
       select: {
         teamId: true,
@@ -25,6 +27,16 @@ export class TeamsService {
     });
     const members = await this.membersService.getAllMembers();
     return { teams, members };
+  }
+
+  async getAllTeams(): Promise<ITeam[]> {
+    return await this.prisma.teams.findMany();
+  }
+
+  async addTeam(teamName: string): Promise<ITeam> {
+    return await this.prisma.teams.create({
+      data: { teamName },
+    });
   }
 
   // formatTeamAndMembers(teams: ITeam[], members: IMember[]): ITeamsAndMembers {

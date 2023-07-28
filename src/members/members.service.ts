@@ -9,4 +9,10 @@ export class MembersService {
   async getAllMembers(): Promise<IMember[]> {
     return await this.prisma.members.findMany();
   }
+
+  async addMember(memberName: string, teamId: number): Promise<IMember> {
+    return await this.prisma.members.create({
+      data: { memberName, teamId },
+    });
+  }
 }
