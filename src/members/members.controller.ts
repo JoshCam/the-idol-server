@@ -8,18 +8,7 @@ export class MembersController {
 
   @Get()
   async getAllMembers(): Promise<any> {
-    return await this.prisma.members.findMany({
-      select: {
-        memberId: true,
-        memberName: true,
-        teamName: {
-          select: {
-            teamId: true,
-            teamName: true,
-          },
-        },
-      },
-    });
+    //
   }
 
   @Get('/team/:id')

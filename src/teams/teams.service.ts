@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { IMember } from 'src/interfaces/member.interface';
-import { ITeam } from 'src/interfaces/team.interface';
+// import { IMember } from 'src/interfaces/member.interface';
+// import { ITeam } from 'src/interfaces/team.interface';
 import { ITeamsAndMembers } from 'src/interfaces/teamAndMembers.interface';
 import { MembersService } from 'src/members/members.service';
 import { PrismaService } from 'src/prisma.service';
@@ -16,7 +16,7 @@ export class TeamsService {
    * Method to get all teams and their members
    * @returns an array of teams with any members included
    */
-  async getAllTeams(): Promise<any> {
+  async getAllTeams(): Promise<ITeamsAndMembers> {
     const teams = await this.prisma.teams.findMany({
       select: {
         teamId: true,

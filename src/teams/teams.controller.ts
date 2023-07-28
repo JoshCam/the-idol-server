@@ -8,13 +8,14 @@ import {
 } from '@nestjs/common';
 import { ITeam } from 'src/interfaces/team.interface';
 import { TeamsService } from './teams.service';
+import { ITeamsAndMembers } from 'src/interfaces/teamAndMembers.interface';
 
 @Controller('teams')
 export class TeamsController {
   constructor(private readonly teamsService: TeamsService) {}
 
   @Get()
-  async getAllTeams(): Promise<ITeam[]> {
+  async getAllTeams(): Promise<ITeamsAndMembers> {
     return await this.teamsService.getAllTeams();
   }
 
