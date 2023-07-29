@@ -40,15 +40,4 @@ export class TeamsController {
     const { teamName, teamId } = instanceToPlain(editTeamDto);
     return await this.teamsService.editTeam(teamName, teamId);
   }
-
-  @Get(':id')
-  async getTeam(@Param('id', ParseIntPipe) id: number): Promise<any> {
-    // Get specific Team
-    // return await this.teamsService.getTeam(id);
-  }
-
-  @Delete(':id')
-  deleteTeam(@Param('id') id: string): void {
-    // remove specific Team (probs just add a deleted tag)
-  }
 }
