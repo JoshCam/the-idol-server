@@ -1,13 +1,4 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  ParseIntPipe,
-  Patch,
-  Post,
-} from '@nestjs/common';
+import { Body, Controller, Get, Patch, Post } from '@nestjs/common';
 import { ITeam } from 'src/interfaces/team.interface';
 import { TeamsService } from './teams.service';
 import { ITeamsAndMembers } from 'src/interfaces/teamAndMembers.interface';

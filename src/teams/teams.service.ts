@@ -1,8 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { CreateTeamDto } from 'src/dtos/createTeam.dto';
 import { ITeam } from 'src/interfaces/team.interface';
-// import { IMember } from 'src/interfaces/member.interface';
-// import { ITeam } from 'src/interfaces/team.interface';
 import { ITeamsAndMembers } from 'src/interfaces/teamAndMembers.interface';
 import { MembersService } from 'src/members/members.service';
 import { PrismaService } from 'src/prisma.service';
